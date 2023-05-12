@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# Coding Test Front end
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+L’objectif du test est de créer une page affichant le détail d’un véhicule, basé sur des APIs.
 
-## Available Scripts
+## Explications
 
-In the project directory, you can run:
+Vous trouverez ci-dessous un projet à réaliser chez vous.
 
-### `npm start`
+### Quelques consignes 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Réalisez le projet comme si c’était un projet professionnel, avec les ressources que vous avez habituellement ;
+- Le projet doit être basé sur ReactJS avec un rendu des pages côté server. Vous pouvez utiliser une librairie dédiée pour le SSR ;
+- Pour ce test, la gestion des anciennes versions de navigateur n’est pas indispensable (pas de nécessité de polyfill)  
+- Les captures sont fournies uniquement à titre d’exemple. L’objectif de ce test n’est _pas_ de les reproduire exactement à l’identique avec nécessairement toutes les données; 
+- Il n'est pas indispensable de faire toute la page, plutôt se focaliser sur livrer une page fonctionelle
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Livrables attendus 
 
-### `npm test`
+- Sur la durée, prenez le temps que vous prendriez en entreprise. Pour des raisons techniques, la durée grand max est de 4h.
+- Le projet en zip uploadé dans la plateforme.
+- les commandes pour builder et executer le projet.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+En fonction de la revue de ce projet, un entretien sera organisé.
 
-### `npm run build`
+## Contexte
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Le groupe La Centrale propose à ses internautes de trouver leur futur véhicule. Pour cela, nous affichons les caractéristiques d’un véhicule sur une page, consultable sur différents appareils (mobile, tablette et desktop).
+L’objectif de ce projet est de proposer une version simplifiée de la page responsive présentant un véhicule et contenant : 
+- Un slider d’image de votre choix (ou à minima l'affichage de plusieurs images); 
+- La mise en avant du prix du véhicule (avec, si disponible, le prix d’origine barré et le prix actuel);
+- Les caractéristiques du véhicule ;
+- Les équipements et options ; ces derniers ne s'affichent qu'à l'ouverture d'une popin au clic sur un bouton libellé "Plus de caractéristiques". 
+- Un bouton permettant de contacter le vendeur, via l’ouverture d’un client email ;
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+L’affichage doit être fait pour les 3 véhicules proposés via des urls utilisant les id des véhicules : 
+- /E40012456.html
+- /F40012456.html
+- /G40012456.html
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Récupération des données
 
-### `npm run eject`
+Pour ce tests, nous allons utiliser les données de 3 véhicules dont les IDs sont : 
+- E40012456
+- F40012456
+- G40012456
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Chaque véhicule a ses données fournies par 4 api
+- /cars/ID contenant les informations générales sur le véhicule ;
+- /options/ID contenant les options du véhicule ;
+- /pricing/ID contenant les informations sur le prix du véhicule ;
+- /photos/ID contenant les informations sur les photos et vignettes du véhicule ;
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Pour appeler les données :
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Installer JSON Server (https://github.com/typicode/json-server)
+```
+    npm install -g json-server 
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Lancer JSON SERVER
+```
+    json-server --watch cars.json
+```
+Vous pouvez maintenant appeler les différents services via les ID des véhicules 
 
-## Learn More
+Ex :
+```
+   curl --location --request GET 'http://localhost:3000/cars/E40012456'
+   curl --location --request GET 'http://localhost:3000/options/E40012456'
+   curl --location --request GET 'http://localhost:3000/pricing/E40012456'
+   curl --location --request GET 'http://localhost:3000/photos/E40012456'
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Éléments fournis
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Un dossier contenant des exemples de captures pour les 3 tailles (desktop, tablette et mobile) ;
+- Le modèle de donnée cars.json permettant de mocker les API ;
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Comment builder et lancer le projet
 
-### Analyzing the Bundle Size
+A compléter par le/la candidat/e
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
